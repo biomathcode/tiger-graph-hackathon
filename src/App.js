@@ -1,24 +1,43 @@
-import logo from './logo.svg';
 import './App.css';
+import Map from './components/Map';
+import Navbar from './components/Navbar';
+import { styled } from './styles/stitches.config';
+import Helmet from 'react-helmet';
+
+import { Suspense } from 'react';
+
+
+const MapContainer = styled('div', {
+  padding: '30px',
+  marginTop:'20px', 
+  width: 'calc(100vw - 60px)', 
+  height:'calc(100vh - 200px)', 
+  overflow:'hidden', 
+})
+
 
 function App() {
   return (
+    <>
+    <Helmet>
+    <meta charSet="utf-8" />
+    <title>Health System CheckBoard</title>
+    <link rel="canonical" href="http://mysite.com/example" />
+</Helmet>
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <Navbar/>
+      <MapContainer >
+        <Suspense fallback={<p>Loading...</p>}>
+        <Map/>
+
+        </Suspense>
+      </MapContainer>
+    
+      
+
     </div>
+    </>
+
   );
 }
 
